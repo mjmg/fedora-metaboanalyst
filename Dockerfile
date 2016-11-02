@@ -1,4 +1,4 @@
-FROM mjmgaro/fedora-r-base:latest
+FROM mjmgaro/fedora-rstudio-server:latest
 
 # Install Metaboanalyst R package prerequisites "Rserve", "ellipse", "scatterplot3d","pls", "caret", "multicore", "lattice", "Cairo", 
 # "randomForest", "e1071","gplots", "som", "xtable", "RColorBrewer", "xcms","impute", "pcaMethods","siggenes", 
