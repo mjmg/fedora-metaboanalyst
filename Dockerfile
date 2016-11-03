@@ -1,5 +1,9 @@
 FROM mjmgaro/fedora-rstudio-server:latest
 
+#install additional tools and library prerequisites
+RUN \
+  dnf install -y netcdf-devel libxml2-devel ImageMagick graphviz cairo-devel libXt-devel
+
 # Install Metaboanalyst R package prerequisites "Rserve", "ellipse", "scatterplot3d","pls", "caret", "multicore", "lattice", "Cairo", 
 # "randomForest", "e1071","gplots", "som", "xtable", "RColorBrewer", "xcms","impute", "pcaMethods","siggenes", 
 # "globaltest", "GlobalAncova", "Rgraphviz","KEGGgraph", "preprocessCore", "genefilter", "pheatmap", "igraph", 
