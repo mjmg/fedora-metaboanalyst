@@ -1,4 +1,4 @@
-FROM mjmgaro/fedora-rstudio-server:latest
+FROM mjmg/fedora-r-base:latest
 
 #install additional tools and library prerequisites
 RUN \
