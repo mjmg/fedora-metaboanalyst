@@ -2,7 +2,7 @@ FROM mjmgaro/fedora-rstudio-server:latest
 
 #install additional tools and library prerequisites
 RUN \
-  dnf install -y netcdf-devel libxml2-devel ImageMagick graphviz cairo-devel libXt-devel
+  dnf install -y netcdf-devel libxml2-devel ImageMagick graphviz cairo-devel libXt-devel NLopt-devel
 
 # Install Metaboanalyst R package prerequisites "Rserve", "ellipse", "scatterplot3d","pls", "caret", "multicore", "lattice", "Cairo", 
 # "randomForest", "e1071","gplots", "som", "xtable", "RColorBrewer", "xcms","impute", "pcaMethods","siggenes", 
@@ -25,7 +25,7 @@ RUN Rscript -e "source('https://bioconductor.org/biocLite.R'); biocLite('genefil
 RUN Rscript -e "source('https://bioconductor.org/biocLite.R'); biocLite('SSPA')"
 RUN Rscript -e "source('https://bioconductor.org/biocLite.R'); biocLite('GlobalAncova')"
 
-
+# This installs other R packages from CRAN
 RUN Rscript -e "install.packages('Rserve')"
 RUN Rscript -e "install.packages('ellipse')"
 RUN Rscript -e "install.packages('scatterplot3d')"
