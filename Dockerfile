@@ -93,8 +93,7 @@ COPY startup.sh /opt/glassfish/glassfish4/bin/startup.sh
 USER root
 
 RUN chown -R glassfish:glassfish /opt/glassfish/glassfish4/bin/startup.sh && \
-    chmod u+x /opt/glassfish/glassfish4/bin/startup.sh && \
-    chmod g+x /opt/glassfish/glassfish4/bin/startup.sh 
+    chmod +x /opt/glassfish/glassfish4/bin/startup.sh 
 
 # Default command to run on container boot
-ENTRYPOINT /opt/glassfish/glassfish4/bin/startup.sh
+ENTRYPOINT ["/opt/glassfish/glassfish4/bin/startup.sh"]
