@@ -64,7 +64,6 @@ RUN \
 RUN \
   cd /opt/glassfish && curl -O https://dl.dropboxusercontent.com/u/95163184/MetaboAnalyst.war
   
-  
 RUN \
   chown -R glassfish:glassfish /opt/glassfish* 
   
@@ -86,11 +85,10 @@ RUN \
   ./asadmin --user admin --passwordfile pwdfile enable-secure-admin && \
   ./asadmin stop-domain
 
-RUN echo "export PATH=$PATH:/opt/glassfish/glassfish4/bin" >> /opt/glassfish/.bashrc
-
-#COPY startup.sh /opt/glassfish/glassfish4/bin/startup.sh
+#RUN echo "export PATH=$PATH:/opt/glassfish/glassfish4/bin" >> /opt/glassfish/.bashrc
 
 USER root
+
 # Add supervisor conf files
 ADD \
   Rserve.conf /etc/supervisor/conf.d/Rserve.conf
@@ -100,10 +98,3 @@ ADD \
   
 # Define default command.
 CMD ["/usr/bin/supervisord","-c","/etc/supervisor.conf"]
-
-
-#RUN chown -R glassfish:glassfish /opt/glassfish/glassfish4/bin/startup.sh && \
-#    chmod +x /opt/glassfish/glassfish4/bin/startup.sh 
-
-# Default command to run on container boot
-#ENTRYPOINT ["/opt/glassfish/glassfish4/bin/startup.sh"]
