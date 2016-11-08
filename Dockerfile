@@ -88,12 +88,22 @@ RUN \
 
 RUN echo "export PATH=$PATH:/opt/glassfish/glassfish4/bin" >> /opt/glassfish/.bashrc
 
-COPY startup.sh /opt/glassfish/glassfish4/bin/startup.sh
+#COPY startup.sh /opt/glassfish/glassfish4/bin/startup.sh
 
 USER root
+# Add supervisor conf files
+ADD \
+  Rserve.conf /etc/supervisor/conf.d/Rserve.conf
+ADD \
+  glassfish.conf /etc/supervisor/conf.d/glassfish.conf
 
-RUN chown -R glassfish:glassfish /opt/glassfish/glassfish4/bin/startup.sh && \
-    chmod +x /opt/glassfish/glassfish4/bin/startup.sh 
+  
+# Define default command.
+CMD ["/usr/bin/supervisord","-c","/etc/supervisor.conf"]
+
+
+#RUN chown -R glassfish:glassfish /opt/glassfish/glassfish4/bin/startup.sh && \
+#    chmod +x /opt/glassfish/glassfish4/bin/startup.sh 
 
 # Default command to run on container boot
-ENTRYPOINT ["/opt/glassfish/glassfish4/bin/startup.sh"]
+#ENTRYPOINT ["/opt/glassfish/glassfish4/bin/startup.sh"]
