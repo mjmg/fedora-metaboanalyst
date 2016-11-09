@@ -51,8 +51,8 @@ RUN Rscript -e "install.packages('pROC')"
 # Based from https://github.com/glassfish/docker/blob/master/oracle-jdk/Dockerfile
 
 ENV JAVA_HOME /usr/lib/jvm/java-openjdk
-ENV GLASSFISH_PKG http://download.java.net/glassfish/4.0/release/glassfish-4.0.zip
-ENV PKG_FILE_NAME glassfish-4.0.zip
+ENV GLASSFISH_PKG http://download.java.net/glassfish/4.1.1/release/glassfish-4.1.1.zip
+ENV PKG_FILE_NAME glassfish-4.1.1.zip
 
 #From https://github.com/glassfish/docker/blob/master/oracle-jdk/Dockerfile
 RUN \  
@@ -84,8 +84,6 @@ RUN \
   ./asadmin --user admin --passwordfile pwdfile deploy  /opt/glassfish/MetaboAnalyst.war && \
   ./asadmin --user admin --passwordfile pwdfile enable-secure-admin && \
   ./asadmin stop-domain
-
-#RUN echo "export PATH=$PATH:/opt/glassfish/glassfish4/bin" >> /opt/glassfish/.bashrc
 
 USER root
 
