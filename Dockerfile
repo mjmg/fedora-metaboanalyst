@@ -63,7 +63,7 @@ RUN \
 
 # Get webapp
 RUN \
-  cd /opt/glassfish && curl -O https://dl.dropboxusercontent.com/u/95163184/MetaboAnalyst.war
+  cd /opt/glassfish && curl -O https://dl.dropboxusercontent.com/s/0jfimv1v5wr2hsw/MetaboAnalyst-3.97.war
   
 RUN \
   chown -R glassfish:glassfish /opt/glassfish* 
@@ -82,7 +82,7 @@ RUN echo "AS_ADMIN_PASSWORD=glassfish" > pwdfile
 # Default to admin/glassfish as user/pass
 RUN \
   ./asadmin start-domain && \
-  ./asadmin --user admin --passwordfile pwdfile deploy  /opt/glassfish/MetaboAnalyst.war && \
+  ./asadmin --user admin --passwordfile pwdfile deploy  /opt/glassfish/MetaboAnalyst-3.97.war && \
   ./asadmin --user admin --passwordfile pwdfile enable-secure-admin && \
   ./asadmin stop-domain
 
