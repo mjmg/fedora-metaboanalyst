@@ -1,5 +1,8 @@
 FROM mjmg/fedora-r-base:latest
 
+ENV METABOANALYST_VERSION 3.98
+ENV METABOANALYST_WAR_URL https://dl.dropboxusercontent.com/s/klbtvns5z0cr6mv/MetaboAnalyst-$METABOANALYST_VERSION.war
+
 #install additional tools and library prerequisites
 RUN \
   dnf install -y netcdf-devel libxml2-devel ImageMagick graphviz cairo-devel libXt-devel NLopt-devel
@@ -63,7 +66,7 @@ RUN \
 
 # Get webapp
 RUN \
-  cd /opt/glassfish && curl -O https://dl.dropboxusercontent.com/s/0jfimv1v5wr2hsw/MetaboAnalyst-3.97.war
+  cd /opt/glassfish && curl -o MetaboAnalyst.war $METABOANALYST_WAR_URL
   
 RUN \
   chown -R glassfish:glassfish /opt/glassfish* 
@@ -82,7 +85,7 @@ RUN echo "AS_ADMIN_PASSWORD=glassfish" > pwdfile
 # Default to admin/glassfish as user/pass
 RUN \
   ./asadmin start-domain && \
-  ./asadmin --user admin --passwordfile pwdfile deploy  /opt/glassfish/MetaboAnalyst-3.97.war && \
+  ./asadmin --user admin --passwordfile pwdfile deploy  /opt/glassfish/MetaboAnalyst.war && \
   ./asadmin --user admin --passwordfile pwdfile enable-secure-admin && \
   ./asadmin stop-domain
 
